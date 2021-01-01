@@ -19,8 +19,7 @@ abstract class Pager
     $return_page = "";
     // Через GET-параметр page передается номер
     // текущей страницы
-    $page = $_GET['page'];
-    if(empty($page)) $page = 1;
+    $page = (empty($_GET['page'])) ? 1 : $_GET['page'];
     // Вычисляем число страниц в системе
     $number = (int)($this->getTotal()/$this->getItemCount());
     if((float)($this->getTotal()/$this->getItemCount()) - $number != 0)
@@ -28,14 +27,14 @@ abstract class Pager
       $number++;
     }
     // Проверяем, есть ли ссылки слева
-    if($page - $this->get_page_link() > 1)
+    if($page - $this->getPageLink() > 1)
     {
       $return_page .= "<a href=$_SERVER[PHP_SELF]".
         "?page=1{$this->getParameters()}>
         [1-{$this->getItemCount()}]
         </a>&nbsp;&nbsp;...&nbsp;&nbsp;";
       // Есть
-      for($i = $page - $this->get_page_link(); $i<$page; $i++)
+      for($i = $page - $this->getPageLink(); $i<$page; $i++)
       {
         $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]".
           "?page=$i{$this->getParameters()}>
@@ -50,17 +49,17 @@ abstract class Pager
       for($i = 1; $i<$page; $i++)
       {
         $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]".
-        "?page=$i{$this->get_parameters()}>
+        "?page=$i{$this->getParameters()}>
         [".(($i - 1)*$this->getItemCount() + 1).
         "-".$i*$this->getItemCount()."]
         </a>&nbsp;";
       }
     }
     // Проверяем, есть ли ссылки справа
-    if($page + $this->get_page_link() < $number)
+    if($page + $this->getPageLink() < $number)
     {
       // Есть
-      for($i = $page; $i<=$page + $this->get_page_link(); $i++)
+      for($i = $page; $i<=$page + $this->getPageLink(); $i++)
       {
       if($page == $i)
         $return_page .= "&nbsp;[".
@@ -68,14 +67,14 @@ abstract class Pager
         "-".$i*$this->getItemCount()."]&nbsp;";
       else
         $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]".
-        "?page=$i{$this->get_parameters()}>
+        "?page=$i{$this->getParameters()}>
         [".(($i - 1)*$this->getItemCount() + 1).
         "-".$i*$this->getItemCount()."]
         </a>&nbsp;";
       }
       $return_page .= "&nbsp;...&nbsp;&nbsp;".
       "<a href=$_SERVER[PHP_SELF]".
-      "?page=$number{$this->get_parameters()}>
+      "?page=$number{$this->getParameters()}>
       [".(($number - 1)*$this->getItemCount() + 1).
       "-{$this->getTotal()}]
       </a>&nbsp;";
@@ -93,7 +92,7 @@ abstract class Pager
             "-{$this->getTotal()}]&nbsp;";
           else
             $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]".
-            "?page=$i{$this->get_parameters()}>
+            "?page=$i{$this->getParameters()}>
             [".(($i - 1) * $this->getItemCount() + 1).
             "-{$this->getTotal()}]
             </a>&nbsp;";
@@ -107,7 +106,7 @@ abstract class Pager
 
         else
         $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]".
-        "?page=$i{$this->get_parameters()}>
+        "?page=$i{$this->getParameters()}>
         [".(($i - 1) * $this->getItemCount() + 1).
         "-".$i*$this->getItemCount()."]
         </a>&nbsp;";

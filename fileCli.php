@@ -5,7 +5,19 @@ $loader->register();
 $loader->addNamespace('Contracts', 'app/');
 
 use Contracts\File as File;
+use Contracts\Search as Search;
 
-$f = new File(10, "app/db/linux.words");
-$f->getPage();
+// $f = new File(app/db/linux.words", 10);
+// print_R($f->getPage());
+
+$s = new Search("abb", "app/db/linux.words", 10);
+$arr = $s->getPage();
+for($i = 0; $i < count($arr); $i++)
+{
+    echo "{$arr[$i]}<br>";
+}
+
+
+echo $s;
+
 ?>
