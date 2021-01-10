@@ -21,7 +21,7 @@ abstract class DataSource
         // var_dump("persist", self::$persist);
     }
 
-    
+    protected abstract function check();
 
     protected static function update()
     {

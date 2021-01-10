@@ -10,7 +10,7 @@ use Contracts\Search as Search;
 // $f = new File(app/db/linux.words", 10);
 // print_R($f->getPage());
 
-$s = new Search("abb", "app/db/linux.words", 10);
+$s = new Search(htmlspecialchars($_GET["search"]), "app/db/linux.words", 10, 1);
 $arr = $s->getPage();
 for($i = 0; $i < count($arr); $i++)
 {
@@ -19,5 +19,6 @@ for($i = 0; $i < count($arr); $i++)
 
 
 echo $s;
+print_r($s);
 
 ?>

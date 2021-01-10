@@ -54,6 +54,7 @@ class  Search extends File
         if($page <= 0 || $page > $number) return 0;
         // Извлекаем позиции текущей страницы
         $arr = array();
+        
         $fd = fopen($this->filename, "r");
         if(!$fd) return 0;
         // Номер, начиная с которого следует

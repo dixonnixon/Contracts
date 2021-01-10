@@ -27,6 +27,19 @@ $co1->addWorker(new Worker("Fire", "Ball", "Dramma"));
 $c = new ClientIdentity(new Client(
     "Федорова", "Игнесса", "Володимеровна", new CompanyIdentity($co1)
 ));
+
+$c = new ClientIdentity(new Client(
+    "Федорова", "Игнесса1", "Володимеровна", new CompanyIdentity($co1)
+));
+
+$c = new ClientIdentity(new Client(
+    "Федорова", "Игнесса2", "Володимеровна", new CompanyIdentity($co1)
+));
+
+$c = new ClientIdentity(new Client(
+    "Федорова", "Игнесса3", "Володимеровна", new CompanyIdentity($co1)
+));
+
 $w1 = new WorkerIdentity(new Worker(
     "Корнеев", "Иван", "Григорьевич"
 ));
@@ -42,7 +55,7 @@ $w5 = new WorkerIdentity(new Worker(
 ));
 
 // var_dump($c, $w1, $w2);
-var_dump( $w1, $w2);
+var_dump( $c, $w2);
 // use Contracts\Client;
 // use Contracts\Worker;
 // use Contracts\Identity;

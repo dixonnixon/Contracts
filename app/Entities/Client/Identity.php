@@ -20,10 +20,7 @@ class Identity extends DataSource
           } else $this->number = 1;
 
           $fd = fopen($this->getSrc(), "a");
-          $str = "{$this->number}|" 
-              . "{$this->ds->surname}|"
-              . "{$this->ds->name}|"
-              . "{$this->ds->patronymic}\r\n";
+          $str = $this->getIdentity();
           fwrite($fd, $str);
           fclose($fd);
           self::update();
@@ -38,6 +35,14 @@ class Identity extends DataSource
     function getAge()
     {
         return $this->ds->age;
+    }
+
+    private function getIdentity()
+    {
+      return "{$this->number}|" 
+      . "{$this->ds->surname}|"
+      . "{$this->ds->name}|"
+      . "{$this->ds->patronymic}\r\n";
     }
 }
 ?>
